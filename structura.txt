@@ -1,0 +1,59 @@
+sistemaTestNew/
+├── dist/                   → Archivos generados tras la compilación
+├── node_modules/           → Dependencias instaladas
+├── public/                 → Archivos estáticos accesibles directamente
+│   ├── vite.svg
+│   ├── favicon.ico
+│   ├── robots.txt
+├── src/                    → Código fuente principal
+│   ├── assets/             → Imágenes, íconos, fuentes, estilos globales
+│   │   ├── react.svg
+│   ├── components/         → Componentes reutilizables (botones, tablas, formularios)
+│   │   ├── Button.jsx
+│   │   ├── Table.jsx
+│   │   ├── Modal.jsx
+│   ├── modules/            → Módulos principales de la app
+│   │   ├── auth/           → Módulo de autenticación (Login, Registro)
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── AuthService.js → Manejo de autenticación (guardar tokens, cerrar sesión)
+│   │   ├── dashboard/      → Panel principal (Menú de navegación)
+│   │   │   ├── Dashboard.jsx
+│   │   ├── finance/        → Herramientas de Finanzas
+│   │   │   ├── Finance.jsx
+│   │   ├── accounting/     → Herramientas de Contabilidad
+│   │   │   ├── Accounting.jsx
+│   │   ├── hr/             → Herramientas de Recursos Humanos
+│   │   │   ├── HR.jsx
+│	│   ├── support/             → Herramientas de Soporte Técnico (Área de Sistemas)
+│   │       ├── Support.jsx      → Página principal del módulo
+│	│       ├── Tickets.jsx      → Gestión de tickets de soporte
+│	│       ├── Inventory.jsx    → Gestión de inventario de hardware
+│	│       ├── KnowledgeBase.jsx → Base de conocimientos (FAQ, guías)
+│	│       ├── Reports.jsx      → Reportes de problemas recurrentes
+│	│       ├── SupportService.js → Llamadas a API para soporte
+│   ├── routes/             → Configuración de rutas protegidas
+│   │   ├── FinanceRoutes.jsx  → Rutas de Finanzas
+│   │   ├── AccountingRoutes.jsx → Rutas de Contabilidad
+│   │   ├── HrRoutes.jsx    → Rutas de RRHH
+│   │   ├── PrivateRoutes.jsx → Protege rutas privadas
+│   │   ├── RoleRoutes.jsx    → Protege rutas por rol
+│   │   ├── SupportRoutes.jsx    → Protege rutas por rol
+│   ├── hooks/              → Hooks personalizados
+│   │   ├── useAuth.js
+│   │   ├── useFetch.js
+│   ├── context/            → Contextos globales (AuthContext, ThemeContext)
+│   ├── services/           → Servicios de API (fetch, axios)
+│   │   ├── api.js
+│   ├── utils/              → Funciones utilitarias
+│   │   ├── helpers.js
+│   │   ├── constants.js
+│   ├── App.jsx             → Definición de todas las rutas
+│   ├── main.jsx            → Punto de entrada de la app
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── vite.config.js

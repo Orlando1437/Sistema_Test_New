@@ -1,0 +1,27 @@
+[
+  {
+    "username": "admin",
+    "password": "admin123",
+    "role": "admin"
+  },
+  {
+    "username": "soporte",
+    "password": "soporte123",
+    "role": "soporte"
+  },
+  {
+    "username": "finanzas",
+    "password": "finanzas123",
+    "role": "finanzas"
+  },
+  {
+    "username": "contabilidad",
+    "password": "conta123",
+    "role": "contabilidad"
+  },
+  {
+    "username": "rrhh",
+    "password": "rrhh123",
+    "role": "rrhh"
+  }
+]
