@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Creación de Usuarios",
+    "url": "/support/userCreation",
+    "group": "soporte",
+    "description": "Interfaz para crear usuarios en el sistema, asociando perfiles y configurando parámetros de acceso y permisos."
+  }
+]

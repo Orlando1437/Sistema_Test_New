@@ -1,0 +1,15 @@
+[
+  {
+    "user": "u-jean.solisca",
+    "password": "josc1437",
+    "name": "Orlando",
+    "role": "admin"
+  },
+  {
+    "user": "soporte",
+    "password": "soporte",
+    "name": "soporte",
+    "role": "soporte"
+  },
+  { "user": "rrhh", "password": "rrhh", "name": "rrhh", "role": "rrhh" }
+]
