@@ -1,9 +1,10 @@
+// LoginInterno.jsx
 import { useState, useContext } from "react"; // Hooks que nos permiten manejar el estado y acceder a contextos respectivamente.
 import { useNavigate } from "react-router-dom"; // Hook que nos permite redirigir o navegar programáticamente entre rutas.
 import { AuthContext } from "../../context/AuthContext";
 
 const LoginInterno = () => {
-  const [user, setUser] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useContext(AuthContext); // Obtenemos la función login del AuthContext.
@@ -15,7 +16,7 @@ const LoginInterno = () => {
     setError(""); // Se limpia cualquier mensaje de error previo estableciendo el estado error a una cadena vacía.
 
     try {
-      await login(user, password); // Se llama a la función login pasando el usuario y la contraseña.
+      await login(username, password); // Se llama a la función login pasando el usuario y la contraseña.
       navigate("/dashboard"); // Si la autenticación fue exitosa, se utiliza navigate para redirigir al usuario a la ruta /dashboard.
     } catch (err) {
       setError(" Credenciales incorrectas"); // Si la autenticación falla, se establece un mensaje de error en el estado error.
@@ -35,8 +36,8 @@ const LoginInterno = () => {
           <input
             type="text"
             placeholder="Usuario"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
             className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
           />

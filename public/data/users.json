@@ -1,15 +1,13 @@
 [
-  {
-    "user": "u-jean.solisca",
-    "password": "josc1437",
-    "name": "Orlando",
-    "role": "admin"
-  },
-  {
-    "user": "soporte",
-    "password": "soporte",
-    "name": "soporte",
-    "role": "soporte"
-  },
-  { "user": "rrhh", "password": "rrhh", "name": "rrhh", "role": "rrhh" }
+    {
+        "id": 1,
+        "name": "Jean Solis Castillo",
+        "username": "u-jean.solisca",
+        "email": "jean.solis@deltron.com.pe",
+        "password_hash": "$2y$10$xuZez91vIw7u25yr2zj3t.BPa.GRsG1Uq90i5X7MAJUDJ43JLfWeG",
+        "role": "admin",
+        "status": "A",
+        "created_at": "2025-02-21 16:09:43",
+        "last_login": null
+    }
 ]

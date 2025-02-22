@@ -1,5 +1,5 @@
+// Support.jsx
 import { useState, useEffect } from "react";
-import { NavLink, Routes, Route } from "react-router-dom";
 const Support = () => {
   const [tools, setTools] = useState([]);
   // Cargar las herramientas desde el archivo JSON

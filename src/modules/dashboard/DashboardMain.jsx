@@ -1,3 +1,4 @@
+// DashboardMain.jsx
 const DashboardMain = ({ user }) => {
   return (
     <div>

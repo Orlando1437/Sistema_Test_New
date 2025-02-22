@@ -1,52 +1,75 @@
+// AuthService.jsx
+import { jwtDecode } from "jwt-decode";
+
 const AuthService = {
   // Se define el objeto AuthService, que contendrá los métodos para gestionar la autenticación del usuario.
-  login: async (user, password) => {
+  login: async (username, password) => {
     // Se define el método login, que recibe el usuario y la contraseña como parámetros.
     try {
-      console.log("AuthService - Intentando login con:", user);
+      console.log("AuthService - Intentando login con:", username);
 
       // Cargar el JSON correctamente desde public/data
-      const response = await fetch("/data/users.json"); // Se realiza una petición fetch para obtener la lista de usuarios.
-      if (!response.ok) throw new Error("Error al cargar usuarios"); // Si la respuesta no es exitosa, se lanza un error.
+      const response = await fetch(
+        "http://localhost/prac/PHP/sistemaNewTest/login.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username, password: password }),
+        }
+      ); // Se realiza una petición fetch para obtener la lista de usuarios.
 
-      const users = await response.json(); // Se obtiene la lista de usuarios en formato JSON.
+      const data = await response.json(); // Se obtiene la lista de usuarios en formato JSON.
 
-      // Buscar el usuario en la lista
-      const foundUser = users.find(
-        (u) => u.user === user && u.password === password
-      );
+      if (data.success) {
+        // Guarda el token en localStorage
+        localStorage.setItem("token", data.token);
 
-      if (foundUser) {
-        // Si se encuentra el usuario en la lista y la contraseña coincide, se inicia sesión.
-        localStorage.setItem("token", "fake-jwt-token"); // Se almacena un token de autenticación en el local storage.
-        localStorage.setItem("name", foundUser.name); // Se almacena el nombre de usuario en el local storage.
-        localStorage.setItem("role", foundUser.role); // Se almacena el rol del usuario en el local storage.
-        localStorage.setItem("user", foundUser.user); // Se almacena el usuario del usuario en el local storage.
-        console.log("AuthService - Login exitoso:", foundUser); // Se muestra un mensaje en la consola indicando que el login fue exitoso.
-        return true; // Se retorna true para indicar que la autenticación fue exitosa.
+        // Decodifica el token para extraer la información del usuario
+        const decoded = jwtDecode(data.token);
+
+        // Opcionalmente guarda otros datos en localStorage si lo deseas:
+        localStorage.setItem("user", decoded.username);
+        localStorage.setItem("name", decoded.name);
+        localStorage.setItem("role", decoded.role);
+
+        console.log("Login exitoso:", decoded);
+        return true;
       } else {
-        console.log("AuthService - Credenciales incorrectas"); // Si no se encuentra el usuario o la contraseña no coincide, se muestra un mensaje en la consola.
-        // throw new Error("Credenciales incorrectas"); // Se lanza un error indicando que las credenciales son incorrectas.
+        throw new Error(data.error);
       }
     } catch (error) {
-      console.error("AuthService - Error en autenticación:", error); // Si ocurre un error durante la autenticación, se muestra en la consola.
-      // throw new Error("Error al iniciar sesión"); // Se lanza un error genérico indicando que hubo un error al iniciar sesión.
+      console.error("Error en autenticación:", error);
     }
   },
 
   logout: () => {
-    // Se define el método logout, que se encargará de cerrar la sesión del usuario
-    console.log("AuthService - Cerrando sesión..."); // Se muestra un mensaje en la consola indicando que se está cerrando la sesión.
-    localStorage.removeItem("token"); // Se elimina el token de autenticación del local storage.
-    localStorage.removeItem("user"); // Se elimina el nombre de usuario del local storage.
-    localStorage.removeItem("role"); // Se elimina el rol del usuario del local storage.
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("name");
+    localStorage.removeItem("role");
+    console.log("Sesión cerrada");
   },
 
   getToken: () => localStorage.getItem("token"), // Se define el método getToken, que devuelve el token de autenticación almacenado en el local storage.
 
   getRole: () => localStorage.getItem("role") || "usuario", // Se define el método getRole, que devuelve el rol del usuario almacenado en el local storage o "usuario" por defecto
 
-  isAuthenticated: () => !!localStorage.getItem("token"), // Se define el método isAuthenticated, que devuelve true si hay un token de autenticación almacenado en el local storage, o false en caso contrario.
+  isAuthenticated: () => {
+    const token = localStorage.getItem("token");
+    if (!token) return false;
+    try {
+      const decoded = jwtDecode(token);
+      if (decoded.exp * 1000 < Date.now()) {
+        // Token expirado
+        return false;
+      }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }, // Se define el método isAuthenticated, que devuelve true si hay un token de autenticación almacenado en el local storage, o false en caso contrario.
 };
 
 export default AuthService;
